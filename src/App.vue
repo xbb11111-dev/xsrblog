@@ -1,44 +1,65 @@
 <template>
-  <div id="app">
-    <Tab :tabs="tabs" v-model="value" />
-    <div class="content-container">
-      <div v-if="value === 0">Tab{{value}}</div>
-      <div v-else-if="value === 1">Tab{{value}}</div>
-      <div v-else>Tab{{value}}</div>
+  <div id="app" class="typo">
+    
+    <Tab :MyName="MyName" :tabs="tabs" :curTabKey="curTabKey" @changeTabKey="handleChangeTabKey" />
+    <div>
+      <IndexPage v-if="curTabKey === 'index'">Tab{{}}</IndexPage>
+      <AboutMePage v-else-if="curTabKey === 'aboutme'">Tab{{}}</AboutMePage>
+      <Article @articleShow="handleChangeisClick" v-else-if="isClickArticle"></Article>
     </div>
   </div>
 </template>
 
 <script>
 import Tab from "./components/Tab.vue";
-import Tab from "./components/Head .vue";
-
+import IndexPage from"./containers/IndexPage";
+import AboutMePage from"./containers/AboutMePage";
+import Article from"./containers/Article";
 export default {
   name: "App",
   components: {
     Tab,
+    IndexPage,
+    AboutMePage,
+    Article,
   },
   data() {
     return {
-      tabs: ["Investment", "Operation", "Function"],
-      value: 0,
+      tabs: [
+        {
+          name: '首页',
+          icon: '',
+          key: 'index',
+        },
+        {
+          name: "关于我",
+          icon: '',
+          key: 'aboutme'
+        },
+      ],
+      curTabKey:'index',
+      curTabIndex:'index',
+      MyName:'Allen',
+      isClickArticle:false,
     };
+  },
+  methods:{
+      handleChangeTabKey(key) {
+      this.curTabKey = key;
+    },
+    handleChangeisClick(isClickArticle){
+    this.isClickArticle=isClickArticle;
+    }
   },
 };
 </script>
 
 <style>
-html {
-  background-color: #000;
-}
-
+@import "typocss/typo.css";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+  
 }
 .content-container {
   font-size: 48px;

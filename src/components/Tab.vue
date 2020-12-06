@@ -1,16 +1,19 @@
 <template>
-  <div class="tab-container">
-    <div
+  <div class="container">
+    <div class="name-container">{{MyName}}</div>
+    <div class="tab-container">
+     <div
       class="tab tab-item"
-      :class="{ active: value === index }"
+      :class="{ active: curTabKey ===tab.key }"
       v-for="(tab, index) in tabs"
       :key="index"
       :style="{
-        color: value === index ? '#fff' : 'rgba(255, 255, 255, 0.6)',
+        color: curTabKey === tab.key ? '#000' : 'rgba(113, 88, 34, 0.6)',
       }"
-      @click="handleClick(index)"
-    >
-      {{ tab }}
+      @click="handleClick(tab.key)"
+     >
+      {{ tab.name }}
+     </div>
     </div>
   </div>
 </template>
@@ -23,28 +26,47 @@ export default {
       type: Array,
       required: true,
     },
-    value: Number,
+     curTabKey:String,
+     MyName:String,
   },
   methods: {
-    handleClick(index) {
-      this.$emit("input", index);
+    handleClick(key) {
+      this.$emit("changeTabKey", key);
     },
   },
 };
 </script>
 
 <style>
+.container{
+  display:flex;
+  box-shadow: 0px 5px 18px rgb(216, 99, 70);
+  display: flex;
+  height: 76px;
+  padding-left: 10px;
+}
 .tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    line-height: 35px;
+    background: #fff;
+    margin-left: 78%;
+    width: 14%;
+}
+.name-container{
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
   line-height: 55px;
+  background:#fff;
 }
-
 .tab-item {
-  border-bottom: 4px solid transparent;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
 }
 
 .active {
