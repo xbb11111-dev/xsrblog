@@ -4,13 +4,13 @@
     <div class="tab-container">
      <div
       class="tab tab-item"
-      :class="{ active: curTabKey ===tab.key }"
+      :class="{ active: curPath ===tab.path }"
       v-for="(tab, index) in tabs"
       :key="index"
       :style="{
-        color: curTabKey === tab.key ? '#000' : 'rgba(113, 88, 34, 0.6)',
+        color: curPath === tab.path ? '#000' : 'rgba(113, 88, 34, 0.6)',
       }"
-      @click="handleClick(tab.key)"
+       @click="handleClick(tab)"
      >
       {{ tab.name }}
      </div>
@@ -21,17 +21,30 @@
 
 <script>
 export default {
+  data(){
+    return{
+      
+    }
+  },
   props: {
     tabs: {
       type: Array,
       required: true,
     },
-     curTabKey:String,
+    //  curTabKey:String,
      MyName:String,
   },
+   computed: {
+    curPath() {
+      const curPath = this.$route.path;
+      if (curPath === '/article') return '/';
+      return this.$route.path;
+    }
+  },
   methods: {
-    handleClick(key) {
-      this.$emit("changeTabKey", key);
+   handleClick(tab) {
+      // this.$emit("changeTabKey", key);
+      this.$router.push({ path: tab.path })
     },
   },
 };

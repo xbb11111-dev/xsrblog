@@ -1,55 +1,63 @@
 <template>
   <div id="app" class="typo">
     
-    <Tab :MyName="MyName" :tabs="tabs" :curTabKey="curTabKey" @changeTabKey="handleChangeTabKey" />
+    <Tab :MyName="MyName" :tabs="tabs"/>
     <div>
-      <IndexPage v-if="curTabKey === 'index'">Tab{{}}</IndexPage>
-      <AboutMePage v-else-if="curTabKey === 'aboutme'">Tab{{}}</AboutMePage>
-      <Article @articleShow="handleChangeisClick" v-else-if="isClickArticle"></Article>
+      <!-- <IndexPage v-if="curTabKey === 'index'"></IndexPage>
+      <AboutMePage v-else-if="curTabKey === 'aboutme'"></AboutMePage> -->
+      <router-view :MyName="MyName"></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import Tab from "./components/Tab.vue";
-import IndexPage from"./containers/IndexPage";
-import AboutMePage from"./containers/AboutMePage";
-import Article from"./containers/Article";
+// import IndexPage from"./containers/IndexPage";
+// import AboutMePage from"./containers/AboutMePage";
 export default {
   name: "App",
   components: {
     Tab,
-    IndexPage,
-    AboutMePage,
-    Article,
+    // IndexPage,
+    // AboutMePage,
   },
   data() {
     return {
-      tabs: [
+      // tabs: [
+      //   {
+      //     name: '首页',
+      //     icon: '',
+      //     key: 'index',
+      //   },
+      //   {
+      //     name: "关于我",
+      //     icon: '',
+      //     key: 'aboutme'
+      //   },
+      // ],
+        tabs: [
         {
           name: '首页',
-          icon: '',
           key: 'index',
+          path: '/',
         },
         {
           name: "关于我",
-          icon: '',
-          key: 'aboutme'
+          key: 'aboutMe',
+          path: '/about_me'
         },
       ],
-      curTabKey:'index',
-      curTabIndex:'index',
+      // curTabKey:'index',
+      // curTabIndex:'index',
       MyName:'Allen',
-      isClickArticle:false,
+      
     };
   },
   methods:{
-      handleChangeTabKey(key) {
-      this.curTabKey = key;
-    },
-    handleChangeisClick(isClickArticle){
-    this.isClickArticle=isClickArticle;
-    }
+    //   handleChangeTabKey(key) {
+    //   this.curTabKey = key;
+    // },
+    
   },
 };
 </script>

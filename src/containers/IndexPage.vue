@@ -2,7 +2,7 @@
 <div class="indexPage">
   <div class="indexPage-container">
      <div class="head-list"> 
-       <Head></Head>
+       <Head :MyName="MyName"></Head>
        <List class="list"></List> 
      </div>
      <Type class="TypeList"></Type> 
@@ -18,6 +18,9 @@ import List from "../components/List";
 import Type from "../components/Type";
 
 export default {
+   props: {
+     MyName:String,
+   },
    components: {
     Head,
     Type,
@@ -37,21 +40,24 @@ export default {
    margin:auto;
    display:flex;
    margin-top: 50px;
+   padding: 20px;
+   min-width: 600px;
 }
 .head-list{
-    width: 1031px;
-    /* border: 1px solid black; */
+    min-width: 500px;
+    width: 800px;
+    
 }
 .TypeList{
-    width: 251px;
-    border: 1px solid black;
-    /* margin-right: 89px; */
-    /* margin: auto; */
-    height: 419px;
+    width: 135px;
+    min-width: 100px;
+    border: 1px solid #555;
+    height: 204px;
     margin-left: 50px;
+    padding: 15px;
 
 }
 .list{
-  /* border:1px solid black; */
+  
 }
 </style>
