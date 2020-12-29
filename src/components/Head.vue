@@ -18,8 +18,11 @@
     <div class="head-logo-list">
       <a class="head-log head-logo1" @click="hanlePersonalClick"></a>
       <a class="head-log head-logo2" href="https://github.com/xbb11111-dev"></a>
-      <a class="head-log head-logo3" href=""></a>
+      <input type="button" class="head-log head-logo3" @click="showWechatCode">
       <a class="head-log head-logo4" href="https://www.zhihu.com/people/bei-wu-di-86"></a>
+    </div>
+    <div class="weChatCode" v-if="isShowWeChatCode===true" @click="closeWechatCode">
+      <img class="codeImage" src="../assets/weChatCode.jpg">
     </div>
   </div>
 </template>
@@ -41,6 +44,7 @@ export default {
       },
       sign1:"我是Allen，",
       sign2:"一个爱打篮球的程序员。",
+      isShowWeChatCode:false,
       
     }
   },
@@ -50,6 +54,12 @@ export default {
         path: "/about_me",
       });
     },
+    showWechatCode(){
+      this.isShowWeChatCode=true;
+    },
+    closeWechatCode(){
+      this.isShowWeChatCode=false;
+    }
     
   },
 };
@@ -122,6 +132,7 @@ margin-top: 20px;
     background-image: url("../assets/weChat.jpg");
     background-size: 71px auto;
     background-position: -17px -10px;
+    border: white;
 }
 .head-logo4{
     background-image: url("../assets/zhiHu.jpg");
@@ -138,4 +149,19 @@ margin-top: 20px;
      background-size: 44px auto;
 
 } */
+.weChatCode{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    /* background-color: bisque; */
+    background: rgba(0,0,0,0.5);
+}
+.codeImage{
+      width: 300px;
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 50%;
+}
 </style>

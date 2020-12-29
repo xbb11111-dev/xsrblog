@@ -3,9 +3,9 @@
   <div class="indexPage-container">
      <div class="head-list"> 
        <Head :MyName="MyName"></Head>
-       <List class="list"></List> 
+       <List class="list" :currentType="currentType"></List> 
      </div>
-     <Type class="TypeList"></Type> 
+     <Type class="TypeList" @changeType="handleChangeType"></Type> 
    </div>
 </div>
    
@@ -18,6 +18,12 @@ import List from "../components/List";
 import Type from "../components/Type";
 
 export default {
+  data() {
+    return {
+      currentType: "all",
+    };
+  },
+
    props: {
      MyName:String,
    },
@@ -27,6 +33,10 @@ export default {
     List,
   },
   methods: {
+    handleChangeType(type){
+      if(type.id !="001")
+      {this.currentType=type.name;}
+    }
   },
 };
 </script>

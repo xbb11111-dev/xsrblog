@@ -22,7 +22,10 @@ export default {
 
 <style>
 .aboutMePage-container{
-  
+  width: 800px;
+    min-width: 600px;
+    margin: auto;
+    padding: 10px;
 }
 
 </style>

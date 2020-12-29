@@ -3,7 +3,7 @@
     <div>
       <div class="type-title">标签分类</div>
       <div class="type-div" v-for="(item, index) in typeList" :key="index">
-        <a class="type-item">{{ typeList[index].name }}</a>
+        <a class="type-item" @click="handlTypeClick(item)">{{ item.name }}</a>
       </div>
     </div>
   </div>
@@ -17,28 +17,37 @@ export default {
       typeList: [
         {
           id: "001",
+          name: "全部",
+          articles: ["d", "a"],
+        },
+             {
+          id: "002",
           name: "JavaScript",
           articles: ["d", "a"],
         },
         {
-          id: "002",
+          id: "003",
           name: "Html",
           articles: ["d", "a"],
         },
         {
-          id: "003",
+          id: "004",
           name: "Css",
           articles: ["d", "a"],
         },
         {
-          id: "0",
+          id: "005",
           name: "Vue",
           articles: ["d", "a"],
         },
       ],
     };
   },
-  methods: {},
+  methods: {
+    handlTypeClick(item){
+      this.$emit('changeType',item)
+    }
+  },
 };
 </script>
 
